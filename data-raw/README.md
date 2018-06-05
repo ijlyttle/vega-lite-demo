@@ -5,13 +5,18 @@ Data generation
 library("tibble")
 library("tidyr")
 library("readr")
+library("here")
 ```
 
+    ## here() starts at /Users/ijlyttle/Documents/git/github/public_work/vega-lite-demo
+
 ``` r
+n_obs <- 10
+
 get_data <- function(){
   tibble(
-    month = month.abb,
-    number = round(rnorm(12, 100, 50))
+    category = LETTERS[seq(n_obs)],
+    number = round(rnorm(n_obs, 100, 50))
   )  
 }
 ```
@@ -25,38 +30,39 @@ data_02 <- get_data()
 data_01
 ```
 
-    ## # A tibble: 12 x 2
-    ##    month number
-    ##    <chr>  <dbl>
-    ##  1 Jan     135.
-    ##  2 Feb      93.
-    ##  3 Mar     122.
-    ##  4 Apr      17.
-    ##  5 May      88.
-    ##  6 Jun      93.
-    ##  7 Jul     195.
-    ##  8 Aug      82.
-    ##  9 Sep      39.
-    ## 10 Oct     207.
-    ## 11 Nov      89.
-    ## 12 Dec      50.
+    ## # A tibble: 10 x 2
+    ##    category number
+    ##    <chr>     <dbl>
+    ##  1 A           90.
+    ##  2 B          139.
+    ##  3 C           62.
+    ##  4 D          155.
+    ##  5 E          128.
+    ##  6 F           87.
+    ##  7 G          102.
+    ##  8 H          235.
+    ##  9 I          108.
+    ## 10 J           59.
 
 ``` r
 data_02
 ```
 
-    ## # A tibble: 12 x 2
-    ##    month number
-    ##    <chr>  <dbl>
-    ##  1 Jan      67.
-    ##  2 Feb      72.
-    ##  3 Mar     104.
-    ##  4 Apr       9.
-    ##  5 May     211.
-    ##  6 Jun     128.
-    ##  7 Jul      19.
-    ##  8 Aug     228.
-    ##  9 Sep      50.
-    ## 10 Oct     106.
-    ## 11 Nov      36.
-    ## 12 Dec      89.
+    ## # A tibble: 10 x 2
+    ##    category number
+    ##    <chr>     <dbl>
+    ##  1 A          142.
+    ##  2 B          157.
+    ##  3 C          206.
+    ##  4 D          -11.
+    ##  5 E          124.
+    ##  6 F           86.
+    ##  7 G           95.
+    ##  8 H           59.
+    ##  9 I           -1.
+    ## 10 J           72.
+
+``` r
+write_csv(data_01, here("data-raw", "data_01.csv"))
+write_csv(data_02, here("data-raw", "data_02.csv"))
+```

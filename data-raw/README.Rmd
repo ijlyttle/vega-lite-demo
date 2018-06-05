@@ -11,10 +11,12 @@ library("here")
 ```
 
 ```{r}
+n_obs <- 10
+
 get_data <- function(){
   tibble(
-    month = month.abb,
-    number = round(rnorm(12, 100, 50))
+    category = LETTERS[seq(n_obs)],
+    number = round(rnorm(n_obs, 100, 50))
   )  
 }
 ```

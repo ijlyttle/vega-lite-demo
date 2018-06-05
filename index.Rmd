@@ -5,4 +5,24 @@ output: html_document
 
 ```{r}
 library("altair")
+library("readr")
+library("here")
+```
+
+```{r}
+data_01 <- read_csv(here("data-raw", "data_01.csv"))
+```
+
+```{r}
+chart_bar <- 
+  alt$Chart(
+    data = "https://ijlyttle.github.io/vega-lite-demo/data-raw/data_01.csv"
+  )$
+  mark_bar()$
+  encode(
+    x = "category:N",
+    y = "number:Q"
+  )
+
+chart_bar
 ```
