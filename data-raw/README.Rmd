@@ -9,6 +9,7 @@ library("tidyr")
 library("readr")
 library("here")
 ```
+## Bar Charts
 
 ```{r}
 n_obs <- 10
@@ -34,4 +35,41 @@ data_02
 ```{r}
 write_csv(data_01, here("data-raw", "data_01.csv"))
 write_csv(data_02, here("data-raw", "data_02.csv"))
+```
+
+## Labeling
+
+```{r}
+make_circle <- function(n_obs = 50, radius = 1, jitter = 0.01) {
+  
+  theta <- seq(0, (2 * pi) * (n_obs - 1) / n_obs, length.out = n_obs)
+  
+  tibble(
+    index = seq(n_obs),
+    x = radius * cos(theta) + rnorm(n_obs, 0, jitter),
+    y = radius * sin(theta) + rnorm(n_obs, 0, jitter),
+  )
+}
+```
+
+```{r}
+make_rectangle <- function(n_obs = 50, dx = 1, dy = 1, jitter = 0.01)
+```
+
+```{r}
+data <- make_circle()
+```
+
+```{r}
+chart <- 
+  alt$Chart(data = r_to_py(data))$
+  mark_line()$
+  encode(
+    x = alt$X("x:Q", scale = alt$Scale(domain = list(-1.2, 1.2)),
+    y = alt$Y("y:Q", scale = alt$Scale(domain = list(-1.2, 1.2)),
+    order= "index:Q"
+  )
+
+chart$
+  properties(width = 400, height = 400)
 ```

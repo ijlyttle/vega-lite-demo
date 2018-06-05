@@ -1,0 +1,47 @@
+---
+title: Vega-Lite Specification
+output: 
+  html_document:
+    code_folding: "hide"
+---
+
+```{r echo=FALSE}
+knitr::opts_chunk$set(message = FALSE)
+```
+
+```{r}
+library("altair")
+library("readr")
+library("here")
+```
+
+```{r}
+data_01 <- 
+  read_csv(here("data-raw", "data_01.csv")) %>%
+  print()
+```
+
+```{r}
+spec_bar <- 
+  alt$Chart()$
+  mark_bar()$
+  encode(
+    x = "category:N",
+    y = "number:Q"
+  )
+
+spec_bar$properties(data = "https://ijlyttle.github.io/vega-lite-demo/data-raw/data_01.csv")
+```
+
+```{r}
+spec_line <- spec_bar$mark_line()
+
+spec_line$properties(data = "https://ijlyttle.github.io/vega-lite-demo/data-raw/data_01.csv")
+```
+
+```{r}
+(spec_bar + spec_line)$
+  properties(
+    data = "https://ijlyttle.github.io/vega-lite-demo/data-raw/data_01.csv"
+  )
+```
