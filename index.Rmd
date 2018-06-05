@@ -1,0 +1,8 @@
+---
+title: Vega-Lite demo
+output: html_document
+---
+
+```{r}
+library("altair")
+```

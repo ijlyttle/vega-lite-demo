@@ -1,0 +1,35 @@
+---
+title: Data generation
+output: github_document
+---
+
+```{r}
+library("tibble")
+library("tidyr")
+library("readr")
+library("here")
+```
+
+```{r}
+get_data <- function(){
+  tibble(
+    month = month.abb,
+    number = round(rnorm(12, 100, 50))
+  )  
+}
+```
+
+```{r}
+data_01 <- get_data()
+data_02 <- get_data()
+```
+
+```{r}
+data_01
+data_02
+```
+
+```{r}
+write_csv(data_01, here("data-raw", "data_01.csv"))
+write_csv(data_02, here("data-raw", "data_02.csv"))
+```
