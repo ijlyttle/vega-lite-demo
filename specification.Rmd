@@ -15,11 +15,15 @@ library("readr")
 library("here")
 ```
 
+We have a data frame with two variables (there is an [online version](https://github.com/ijlyttle/vega-lite-demo/blob/master/data-raw/data_01.csv)):
+
 ```{r}
 data_01 <- 
   read_csv(here("data-raw", "data_01.csv")) %>%
   print()
 ```
+
+We can plot the observations as bars:
 
 ```{r}
 spec_bar <- 
@@ -33,11 +37,15 @@ spec_bar <-
 spec_bar$properties(data = "https://ijlyttle.github.io/vega-lite-demo/data-raw/data_01.csv")
 ```
 
+We could plot them as lines (although bars are likely more-appropriate).
+
 ```{r}
 spec_line <- spec_bar$mark_line()
 
 spec_line$properties(data = "https://ijlyttle.github.io/vega-lite-demo/data-raw/data_01.csv")
 ```
+
+Or we could combine the plots as layers:
 
 ```{r}
 (spec_bar + spec_line)$
